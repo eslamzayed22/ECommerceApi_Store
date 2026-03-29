@@ -70,7 +70,7 @@ namespace ECommerce.Persistence.Data.DataSeed
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Failed to Read Data From JSON : {ex}");
+                Console.WriteLine($"Failed to Read Data From JSON : {ex} !");
             }
         }
     }
