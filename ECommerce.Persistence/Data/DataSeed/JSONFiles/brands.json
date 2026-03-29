@@ -1,0 +1,26 @@
+[
+  {
+    "Name": "H&M",
+    "Image": "images/brands/hm.png"
+  },
+  {
+    "Name": "ZARA",
+    "Image": "images/brands/zara.png"
+  },
+  {
+    "Name": "Nike",
+    "Image": "images/brands/nike.png"
+  },
+  {
+    "Name": "Activ",
+    "Image": "images/brands/activ.png"
+  },
+  {
+    "Name": "Mango",
+    "Image": "images/brands/mango.png"
+  },
+  {
+    "Name": "Levi's",
+    "Image": "images/brands/levis.png"
+  }
+]

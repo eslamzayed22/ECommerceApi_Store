@@ -1,0 +1,18 @@
+[
+  {
+    "Name": "Tops",
+    "Image": "images/categories/tops.png"
+  },
+  {
+    "Name": "Bottoms",
+    "Image": "images/categories/bottoms.png"
+  },
+  {
+    "Name": "Outerwear & Dresses",
+    "Image": "images/categories/outerwear-dresses.png"
+  },
+  {
+    "Name": "Accessories & Footwear",
+    "Image": "images/categories/accessories-footwear.png"
+  }
+]
