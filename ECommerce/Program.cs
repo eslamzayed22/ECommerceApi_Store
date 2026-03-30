@@ -4,12 +4,13 @@ using ECommerce.Extensions;
 using ECommerce.Persistence.Data.DataSeed;
 using ECommerce.Persistence.Data.DbContexts;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace ECommerce
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -30,8 +31,8 @@ namespace ECommerce
             var app = builder.Build();
 
             #region DataSeed
-            app.MigrateDb();
-            app.SeedDb();
+            await app.MigrateDbAsync();
+            await app.SeedDbAsync();
             #endregion
 
             // Configure the HTTP request pipeline.

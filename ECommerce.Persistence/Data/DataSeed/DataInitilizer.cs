@@ -20,26 +20,26 @@ namespace ECommerce.Persistence.Data.DataSeed
         {
             _dbContext = dbContext;
         }
-        public void Initilize()
+        public async Task InitilizeAsync()
         {
             try
             {
-                var HasProducts   = _dbContext.Products.Any();
-                var HasBrands     = _dbContext.ProductBrands.Any();
-                var HasCategories = _dbContext.ProductCategories.Any();
+                var HasProducts   = await _dbContext.Products.AnyAsync();
+                var HasBrands     = await _dbContext.ProductBrands.AnyAsync();
+                var HasCategories = await _dbContext.ProductCategories.AnyAsync();
 
                 if (HasProducts && HasBrands && HasCategories) return;
                 
                 if (!HasBrands)
-                    SeedDataFromJson<ProductBrand, int>("brands.json", _dbContext.ProductBrands);
+                   await SeedDataFromJsonAsync<ProductBrand, int>("brands.json", _dbContext.ProductBrands);
                 
                 if (!HasCategories)
-                    SeedDataFromJson<ProductCategory, int>("categories.json", _dbContext.ProductCategories);
+                   await SeedDataFromJsonAsync<ProductCategory, int>("categories.json", _dbContext.ProductCategories);
 
                 _dbContext.SaveChanges();
 
                 if (!HasProducts)
-                    SeedDataFromJson<Product, int>("products.json", _dbContext.Products);
+                   await SeedDataFromJsonAsync<Product, int>("products.json", _dbContext.Products);
                 _dbContext.SaveChanges();
 
             }
@@ -49,7 +49,7 @@ namespace ECommerce.Persistence.Data.DataSeed
             }
         }
 
-        private void SeedDataFromJson<T, TKey>(string fileName, DbSet<T> dbSet) where T : BaseEntity<TKey>
+        private async Task SeedDataFromJsonAsync<T, TKey>(string fileName, DbSet<T> dbSet) where T : BaseEntity<TKey>
         {
             var filePath = @"..\ECommerce.Persistence\Data\DataSeed\JSONFiles\" + fileName;
 
@@ -65,7 +65,7 @@ namespace ECommerce.Persistence.Data.DataSeed
 
                 if (Data is not null )
                 {
-                    dbSet.AddRange(Data);
+                   await dbSet.AddRangeAsync(Data);
                 }
             }
             catch (Exception ex)
