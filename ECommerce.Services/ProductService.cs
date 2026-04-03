@@ -27,6 +27,9 @@ namespace ECommerce.Services
             var repo = _unitOfWork.GetRepository<Product, int>();
             //map DTO to entity
             var product = _mapper.Map<Product>(createProductDto);
+
+            product.Slug = GenerateSlug(product.Title);
+
             await repo.AddAsync(product);
             await _unitOfWork.SaveChangesAsync();
             //map entity to DTO
@@ -88,6 +91,11 @@ namespace ECommerce.Services
             var Categories = await _unitOfWork.GetRepository<ProductCategory, int>().GetAllAsync();
             return _mapper.Map<IEnumerable<CategoryDto>>(Categories);
         }
-     
+
+        private string GenerateSlug(string title)
+        {
+            return title.ToLower().Replace(" ", "-");
+        }
+
     }
 }
