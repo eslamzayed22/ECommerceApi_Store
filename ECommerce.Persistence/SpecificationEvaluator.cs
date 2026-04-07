@@ -18,12 +18,15 @@ namespace ECommerce.Persistence
             var query = EntryPoint;
             if (specification is not null)
             {
+                //Where
+                if (specification.Criteria is not null)
+                {
+                    query = query.Where(specification.Criteria);
+                }
+
+                //Include
                 if (specification.IncludeExpression is not null && specification.IncludeExpression.Any())
                 {
-                    //foreach (var includeExp in specification.IncludeExpression)
-                    //{
-                    //    query = query.Include(includeExp);
-                    //}
                     query = specification.IncludeExpression.Aggregate(query, (current, includeExp) => current.Include(includeExp));
                 }           
             }
